@@ -1,5 +1,4 @@
 package ted0203;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -7,7 +6,7 @@ public class Main {
         Scanner leia = new Scanner(System.in);
         Pessoa pessoa = new Pessoa();
         Verificador verificador = new Verificador();
-        float[] alturas = new float[3];
+        float[] alturas = new float[10];
 
 
         verificador.setMaiorAltura(0F);
@@ -16,7 +15,7 @@ public class Main {
         verificador.setNumMulheres(0);
 
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 10; i++){
             boolean j = true;
             while(j) {
                 System.out.print("Informe o sexo da pessoa " + (i + 1) + " (masculino/feminino): ");
@@ -33,7 +32,7 @@ public class Main {
 
         verificador.setMenorAltura(verificador.getMaiorAltura());
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 10; i++){
             verificador.atualizaMenorAltura(alturas[i]);
         }
 
