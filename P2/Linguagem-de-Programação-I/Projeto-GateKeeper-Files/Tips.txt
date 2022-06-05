@@ -1,0 +1,7 @@
+- Estudar sobre diagrama de classes
+
+Ideias:
+https://www.youtube.com/watch?v=SpKANTHXwmo (Interface gráfica)
+
+
+- 
