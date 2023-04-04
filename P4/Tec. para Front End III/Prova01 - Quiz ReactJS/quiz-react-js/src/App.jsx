@@ -1,5 +1,11 @@
+import React, { useState } from "react";
+
 function App() {
   
+  // Propriedades
+
+  const [showResultadoFinal, setResultadoFinal] = useState(false);
+
   return (
     <div className="App">
       <h1>Quiz de Front-End</h1>
@@ -16,9 +22,29 @@ function App() {
           <li>Opção 4</li>
         </ul>
 
+        <h3>Pergunta Nº 2:</h3>
+
+        <ul>
+          <li>Opção 1</li>
+          <li>Opção 2</li>
+          <li>Opção 3</li>
+          <li>Opção 4</li>
+        </ul>
+
+      </div>
+
+      <div className="resultado-final">
+        <h2>Resultado Final:</h2>
+        <h3>
+          3/3
+
+          <button>OK!</button>
+        </h3>
+
       </div>
     
     </div>
+    
   )
 }
 
