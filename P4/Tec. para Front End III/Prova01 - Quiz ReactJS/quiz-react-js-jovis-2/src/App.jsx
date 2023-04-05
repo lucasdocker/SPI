@@ -1,17 +1,11 @@
 import { useState } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0);
   const [placar, setPlacar] = useState(0);
-  const [finalizar, setFinalizar] = useState(true);
+  const [finalizar, setFinalizar] = useState();
 
   return (
     <div className="App">
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
       <div className='perguntas'>
 
         <h1>Quiz de Front-End</h1>
@@ -87,21 +81,14 @@ function App() {
 
       <div className='Finalizar Quiz'>         
 
-        <input type="button" onclick="funcao1()" value="Finalizar Quiz">
+        <button onClick={() => setFinalizar(true)}>
+          Finalizar Quiz
           { finalizar ? (
-            <h3>Placar Final: {placar}/3</h3>
+            alert("Placar Final: " + placar + "/3")
           ) : (
-            function funcao1() {
-              alert("Eu sou um\nAlert!")
-            }
+            alert("Você precisa responder todas as questões antes de finalizar o Quiz!")
           )}
-        </input>
-
-      </div>
-
-      <div className='Placar'>
-
-        <h3>Placar Final: {placar}/3</h3>
+        </button>        
 
       </div>
 
