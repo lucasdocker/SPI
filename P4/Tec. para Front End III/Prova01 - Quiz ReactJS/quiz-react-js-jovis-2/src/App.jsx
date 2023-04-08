@@ -1,99 +1,67 @@
-import { useState } from 'react'
+import React, { useState } from "react";
 
-function App() {
+const questoes = [
+  {
+    question: "Qual grande empresa foi responsável pelo desenvolvimento do React?",
+    options: ["Facebook", "Google", "Twitter", "Oracle"],
+    answer: 0,
+  },
+  {
+    question: "No React, qual é o tipo de objeto que segura algumas informações mesmo após mudanças no longo do ciclo de vida de um component?",
+    options: ["Event Handler", "DOM", "Props", "Estado do component"],
+    answer: 3,
+  },
+  {
+    question: "Em React, qual o nome dado aos valores transmitidos aos components em sua criação?",
+    options: ["Props", "DOM", "Event", "PureComponent"],
+    answer: 0,
+  },
+];
+
+export default function Quiz() {
+  const [questaoAtual, setQuestaoAtual] = useState(0);
   const [placar, setPlacar] = useState(0);
-  const [finalizar, setFinalizar] = useState();
+  const [mostrarPlacar, setMostrarPlacar] = useState(false);
+
+  const gerenciarResposta = (indiceResposta) => {
+    if (indiceResposta === questoes[questaoAtual].answer) {
+      setPlacar(placar + 1);
+    }
+
+    const proximaQuestao = questaoAtual + 1;
+    if (proximaQuestao < questoes.length) {
+      setQuestaoAtual(proximaQuestao);
+    } else {
+      setMostrarPlacar(true);
+    }
+  };
+
+  const criaQuestao = () => {
+    const questao = questoes[questaoAtual];
+    return (
+      <div>
+        <h2>{questao.question}</h2>
+        {questao.options.map((option, index) => (
+          <button key={index} onClick={() => gerenciarResposta(index)}>
+            {option}
+          </button>
+        ))}
+      </div>
+    );
+  };
+
+  const criarPlacar = () => {
+    return (
+      <div>
+        <h2>Você acertou {placar} de {questoes.length} questões.</h2>
+        <button onClick={() => window.location.reload()}>Reiniciar</button>
+      </div>
+    );
+  };
 
   return (
-    <div className="App">
-      <div className='perguntas'>
-
-        <h1>Quiz de Front-End</h1>
-
-        <h2>Projeto de avaliação da disciplina de Tecnologias para Front-End III</h2>
-
-        <h3>Pergunta Nº 1:</h3>
-          <ul>
-            <li>
-              <button onClick={() => setPlacar((placar) => placar + 1)}>A</button>
-              Questão correta
-            </li>
-            <li>
-              <button>B</button>
-              asoiajisjaiosjaoisjaoisjoa
-            </li>
-            <li>
-              <button>C</button>
-              odkapofsppokfpsd pdkpod poifspokf
-            </li>
-            <li>
-              <button>D</button>
-              ksapoksapovopkdpo riowejroijwr sdpoiada
-            </li>
-          </ul>
-
-          <h3>Pergunta Nº 2:</h3>
-          <ul>
-            <li>
-              <button>A</button>
-              basiaoijdfoisjofijsdoifjsfj dijfoijd idjasoidja
-            </li>
-            <li>
-              <button onClick={() => setPlacar((placar) => placar + 1)}>B</button>
-              Questão correta
-            </li>
-            <li>
-              <button>C</button>
-              odkapofsppokfpsd pdkpod poifspokf
-            </li>
-            <li>
-              <button>D</button>
-              ksapoksapovopkdpo riowejroijwr sdpoiada
-            </li>
-          </ul>
-
-          <h3>Pergunta Nº 3:</h3>
-          <ul>
-            <li>
-              <button>A</button>
-              basiaoijdfoisjofijsdoifjsfj dijfoijd idjasoidja
-            </li>
-            <li>
-              <button>B</button>
-              asoiajisjaiosjaoisjaoisjoa
-            </li>
-            <li>
-              <button onClick={() => setPlacar((placar) => placar + 1)}>C</button>
-              Questão correta
-            </li>
-            <li>
-              <button>D</button>
-              ksapoksapovopkdpo riowejroijwr sdpoiada
-            </li>
-          </ul>
-      </div>
-
-      <div className='questoes-respondidas'>
-        
-        <h3>Questões respondidas:</h3>    
-
-      </div>
-
-      <div className='Finalizar Quiz'>         
-
-        <button onClick={() => setFinalizar(true)}>
-          Finalizar Quiz
-          { finalizar ? (
-            alert("Placar Final: " + placar + "/3")
-          ) : (
-            alert("Você precisa responder todas as questões antes de finalizar o Quiz!")
-          )}
-        </button>        
-
-      </div>
-
+    <div>
+      {mostrarPlacar ? criarPlacar() : criaQuestao()}
     </div>
-  )
+  );
 }
-
-export default App
